@@ -1,0 +1,34 @@
+spring:
+  batch:
+    job:
+      names: ${job.name:NONE}
+    initialize-schema: always
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    generate-ddl: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://localhost:6025/test-batch?useSSL=false
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+    schema: org/springframework/batch/core/schema-mysql.sql
+    hikari:
+      pool-name: spring-batch-meta-connection-pool
+      maximum-pool-size: 3
+      max-lifetime: 29000
+
+debug: true
+logging:
+  level:
+    org.mariadb.jdbc: DEBUG
+    com.zaxxer.hikari: DEBUG
+    org.springframework.jdbc: DEBUG
+    java.sql: DEBUG
+    org.hibernate: DEBUG
